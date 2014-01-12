@@ -1,10 +1,11 @@
 class Shelter
 
-attr_accessor :name, :animals
+attr_accessor :name, :animals, :clients
 
-	def initialize (name, animals=[])
+	def initialize (name, animals=[], clients=[])
 		@name = name
 		@animals = animals
+		@clients = clients
 	end
 end
 
@@ -54,3 +55,7 @@ def add_client()
 	Client.new(name, num_children, age)
 end
 
+
+shelter.animals << add_animal()
+
+shelter.clients << add_client()
