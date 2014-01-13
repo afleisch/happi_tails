@@ -4,7 +4,7 @@ require './client'
 require 'pry'
 
 
-shelter= Shelter.new("happitails")
+shelter= Shelter.new("happitails") #new instance of Shelter
 
 def menu message
 	puts `clear`
@@ -36,15 +36,18 @@ while choice !='q'
 	print "what kind of animal is it?"; species = gets.chomp
 	print "how many toys does it have?"; toys = gets.chomp
 
-	shelter.animals << Animal.new(name, age, gender, species, toys)
-	message = "Welcome to Happi Tails #{shelter.animals.last.name}"
+	shelter.animals << Animal.new(name, age, gender, species, toys) #instantiate a new Animal with arguments' values taken from chomp
+	#and pushed into the @animals array of Shelter
+	message = "Welcome to Happi Tails #{shelter.animals.last.name}" #the @name of the last item added to the @animals
+	#array of shelter
 	when "2"
 	puts "Please enter client info"
 	print "name:"; name = gets.chomp
 	print "no. of children:"; children = gets.chomp
 	print "age:"; age = gets.chomp
 	
-	shelter.clients << Client.new(name, children, age)
+	shelter.clients << Client.new(name, children, age) #instantiate a new Client with arguments' values taken from chomp
+	#and pushed into the @clients array of Shelter
 	message = "Welcome to Happi Tails #{shelter.clients.last.name}!"
 	when "3"
 	message = "List of all animals"
@@ -58,21 +61,28 @@ while choice !='q'
     	puts "#{client.name}"
     end
     print "name:"; requested_client = gets.chomp.downcase
-    name_client_who_adopts = (shelter.clients.select { |client| client.name == requested_client}).first.name
+    #set variable to the @name of the first value (a Client) of the new array of all 
+    #items in @clients array whose @name equals the user input
+    name_client_who_adopts = (shelter.clients.select { |client| client.name == requested_client}).first.name 
+    #set variable to the first object(client) whose @name equals user input
     client_who_adopts = (shelter.clients.select { |client| client.name == requested_client}).first
     puts "Which animal would you like to adopt?"
 	shelter.get_available_animals.each do |animal|
 		puts "#{animal.name}"
     end
     print "name:"; requested_animal = gets.chomp.downcase
+    #set variable to the first object (animal) of the new array of all 
+    #items in @animals array whose @name equals user input 
     selected_animal = (shelter.animals.select { |animal| animal.name == requested_animal}).first
+    #set variable to the @owner of animal object just returned
 	selected_animal.owner = name_client_who_adopts
+	#push that animals @name into the @pets array of the client object selected to adopt
 	client_who_adopts.pets << requested_animal
 	message = "#{name_client_who_adopts} just adopted #{selected_animal.name}!"
 	when "6"
 	puts "Which client would like to put an animal up for adoption?"
 	#binding.pry
-	shelter.clients_with_pets.each do |client| #for each client who does not have an empty array for @pets 
+	shelter.clients_with_pets.each do |client| #for each client in the array of clients whose @pets has items
 		
 		puts "#{client.name}" #put their name on the screen
 	end
@@ -104,25 +114,6 @@ end
 
 
 
-# shelter.animals << add_animal()
 
-# p shelter.animals
-
-# def add_client()
-# 	puts "Please enter client info"
-# 	print "name:"; name = gets.chomp
-# 	print "no. of children:"; num_children = gets.chomp
-# 	print "age:"; age = gets.chomp
-# 	Client.new(name, num_children, age)
-# end
-
-# shelter.animals << add_animal()
-
-# p shelter.animals
-
-
-# shelter.clients << add_client()
-
-# p shelter.clients
 
 
