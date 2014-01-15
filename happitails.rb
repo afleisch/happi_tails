@@ -87,14 +87,14 @@ while choice !='q'
 		puts "#{client.name}" #put their name on the screen
 	end
 	print "name:"; lonely_client = gets.chomp #whoever the user chooses will need to have their .pets array accessed
-	client_who_disowns = (shelter.clients.select {|client| client.name == lonely_client}).first.name #from the clients array, select any items where 
+	client_who_disowns = (shelter.clients.select {|client| client.name == lonely_client}).first #from the clients array, select any items where 
 	#the name matches what was entered by the user, take the first object's name and set it to client_who disowns.
 	puts "Which animal do they want to give up?"
 	client_who_disowns.pets.each do |name| #for each animal in the chosen client's .pet array, puts the name
 		puts "#{name}"
 	end
 	print "name: "; orphan_animal = gets.chomp
-	client.pets.delete_if { |name| name == orphan_animal} #deletes the animal from the client's @pets array
+	client_who_disowns.pets.delete_if { |name| name == orphan_animal} #deletes the animal from the client's @pets array
 	message = "#{client_who_disowns} has given #{orphan_animal} up for adoption."
 
 	else
