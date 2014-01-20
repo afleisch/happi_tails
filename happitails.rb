@@ -95,7 +95,7 @@ while choice !='q'
 	end
 	print "name: "; orphan_animal = gets.chomp
 	client_who_disowns.pets.delete_if { |name| name == orphan_animal} #deletes the animal from the client's @pets array
-	message = "#{client_who_disowns} has given #{orphan_animal} up for adoption."
+	message = "#{client_who_disowns.name} has given #{orphan_animal} up for adoption."
 
 	else
 	message += "I don't understand ..."
