@@ -15,10 +15,9 @@ class Animal
     @name
   end
 
-   def available? #the value that is returened when calling available? is true if the animal object has the owner argument set to nil, 
+  def available? #the value that is returened when calling available? is true if the animal object has the owner argument set to nil, 
    	#and false if it has a value
-   		@owner.nil?
-   end	
-
+   	@owner.nil?
+  end	
 
 end
